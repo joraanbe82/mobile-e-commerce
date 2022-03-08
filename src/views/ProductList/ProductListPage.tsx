@@ -70,7 +70,7 @@ function ProductListPage() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <SearchBar setSearch={setSearch} />
       <Box sx={{ flexGrow: 1 }}>
         <Grid

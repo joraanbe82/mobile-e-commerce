@@ -1,13 +1,13 @@
 import { ActionType } from '../../action-types'
 
-interface OptionValues {
+export interface OptionValues {
   code: number
   name: string
 }
 
 interface Options {
   colors: OptionValues[]
-  storage: OptionValues[]
+  storages: OptionValues[]
 }
 
 export type ProductDetail = {
