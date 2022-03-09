@@ -18,7 +18,8 @@ function App() {
     const currentLocation = () => {
       if (location.pathname.includes('/home')) {
         setCurrLocation('home')
-      } else {
+      }
+      if (location.pathname.includes('/detail')) {
         setCurrLocation('detail')
       }
     }

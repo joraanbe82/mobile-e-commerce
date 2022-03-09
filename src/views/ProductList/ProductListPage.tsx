@@ -70,7 +70,6 @@ function ProductListPage() {
 
   return (
     <>
-      {/* <Navbar /> */}
       <SearchBar setSearch={setSearch} />
       <Box sx={{ flexGrow: 1 }}>
         <Grid
@@ -81,9 +80,19 @@ function ProductListPage() {
         >
           {search.length > 0 && filteredData.map((product) => (
             <Grid key={product.id} item xs={3} sx={{ textAlign: 'center' }}>
-              <Link to={`/detail/${product.id}`}>
-                <img alt={product.model} src={product.imgUrl} />
-              </Link>
+              <Card>
+                <CardHeader
+                  title={product.model}
+                  subheader={`${product.brand}  ${product.price} €`}
+                />
+                <Link to={`/detail/${product.id}`}>
+                  <CardMedia
+                    component='img'
+                    image={product.imgUrl}
+                    alt={product.model}
+                  />
+                </Link>
+              </Card>
             </Grid>
           ))}
 
