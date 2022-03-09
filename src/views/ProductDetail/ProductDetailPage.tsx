@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
+import ShoppingCart from '@mui/icons-material/AddShoppingCart'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
@@ -17,6 +18,8 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import Navbar from '../../components/Navbar/Navbar'
 import { ActionType } from '../../action-types'
 import { OptionValues } from './ProductDetailActions'
+
+import './ProductDetail.css'
 
 function ProductDetailPage() {
   const { id } = useParams()
@@ -69,12 +72,12 @@ function ProductDetailPage() {
         <Box sx={{ flexGrow: 1 }}>
           <Grid
             container
-            spacing={{ xs: 2, md: 3 }}
+            spacing={{ xs: 2, md: 4 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
             sx={{ justifyContent: 'center' }}
           >
             <Grid item xs={4}>
-              <Card>
+              <Card className='card'>
                 <CardMedia
                   component='img'
                   image={mobile.imgUrl}
@@ -85,7 +88,7 @@ function ProductDetailPage() {
             </Grid>
             <Grid item xs={4}>
               <section>
-                <h4>Detalles</h4>
+                <h4>Características</h4>
                 <div>
                   <p>
                     <strong>Marca: </strong>
@@ -101,6 +104,7 @@ function ProductDetailPage() {
                     <strong>Precio: </strong>
                     {' '}
                     {mobile.price}
+                    {' €'}
                   </p>
                   <p>
                     <strong>CPU: </strong>
@@ -119,8 +123,14 @@ function ProductDetailPage() {
                   </p>
                   <p>
                     <strong>Resolución de pantalla: </strong>
-                    <span>{mobile.displayResolution}</span>
-                    <span>{mobile.displaySize}</span>
+                    <span>
+                      {mobile.displayResolution}
+                      {' - '}
+                    </span>
+                    <span>
+                      {mobile.displaySize}
+                      {' - '}
+                    </span>
                     <span>{mobile.displayType}</span>
 
                   </p>
@@ -130,14 +140,30 @@ function ProductDetailPage() {
                     {mobile.battery}
                   </p>
                   <p>
-                    <strong>Cámara: </strong>
+                    <strong>Cámara principal: </strong>
                     {' '}
-                    {mobile.primaryCamera.map((detail) => (
+                    {typeof mobile.primaryCamera !== 'string'
+                      && mobile.primaryCamera.length > 0
+                      && mobile.primaryCamera.map((detail) => (
+                        <span key={detail}>
+                          {detail}
+                          {'  '}
+                        </span>
+                      ))}
+                    {typeof mobile.primaryCamera === 'string'
+                      && (
                       <span>
-                        {detail}
-                        {'  '}
+                        { mobile.primaryCamera}
+
                       </span>
-                    ))}
+                      )}
+                  </p>
+                  <p>
+                    <strong>Cámara secundaria: </strong>
+                    {' '}
+                    <span>
+                      { mobile.secondaryCmera}
+                    </span>
                   </p>
                   <p>
                     <strong>Dimesiones: </strong>
@@ -148,15 +174,15 @@ function ProductDetailPage() {
                     <strong> Peso: </strong>
                     {' '}
                     {mobile.weight}
+                    {' gr'}
                   </p>
 
                 </div>
 
               </section>
-              <section>
-                actions
 
-                <div>
+              <section className='actions'>
+                <div className='selects'>
                   <FormControl fullWidth>
                     <InputLabel id='color-label'>Color</InputLabel>
                     <Select
@@ -179,7 +205,9 @@ function ProductDetailPage() {
                   </FormControl>
 
                   <FormControl fullWidth>
-                    <InputLabel id='capacity-label'>Almacenamiento</InputLabel>
+                    <InputLabel id='capacity-label'>
+                      Almacenamiento
+                    </InputLabel>
                     <Select
                       labelId='capacity-label'
                       id='capacity-select'
@@ -199,18 +227,20 @@ function ProductDetailPage() {
                     </Select>
                   </FormControl>
 
-                  <Button
-                    variant='contained'
-                    onClick={() => addToCar()}
-                    disabled={!isFormValid()}
-                  >
-                    Añadir a la cesta
-
-                  </Button>
-                  {' '}
-                  {/** indetificador, codigoColor, codigoCapacidad */}
-
                 </div>
+
+                <Button
+                  startIcon={<ShoppingCart />}
+                  variant='contained'
+                  onClick={() => addToCar()}
+                  disabled={!isFormValid()}
+                >
+                  Añadir a la cesta
+
+                </Button>
+                {' '}
+                {/** indetificador, codigoColor, codigoCapacidad */}
+
               </section>
 
             </Grid>

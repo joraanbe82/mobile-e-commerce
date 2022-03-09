@@ -1,0 +1,11 @@
+.actions {
+  margin-bottom: 2rem;
+}
+.card{
+  box-shadow: none!important;
+}
+.selects {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0rem;
+}
