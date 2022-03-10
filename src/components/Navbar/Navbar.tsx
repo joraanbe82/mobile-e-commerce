@@ -9,27 +9,30 @@ import './Navbar.css'
 function Navbar() {
   const [cartItems, setCartItems] = useState(0)
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const items = window.localStorage.getItem('count')
-    setCartItems(Number(items))
+    const items = window.sessionStorage.getItem('count')
+    if (items !== null) {
+      setCartItems(Number(items))
+    }
   })
 
   return (
     <section className='navbar'>
       <div className='divLogo'>
         <Link to='/home'>
-          <img alt='logo' src='/shop-blue.png' width={50} />
-          <p>Tech store</p>
+          <img alt='logo' src='/hand.png' width={50} />
+          <p>Mobile store</p>
         </Link>
       </div>
       <div>
-        <h3>Bazar shurmano, todo de 2º mano</h3>
+        <h3>Tienda de móviles</h3>
 
       </div>
 
-      <div>
-        <Badge badgeContent={cartItems} color='primary'>
-          <ShoppingCart />
+      <div className='divBadge'>
+        <Badge badgeContent={cartItems} color='secondary'>
+          <ShoppingCart sx={{ fill: 'orangered' }} />
         </Badge>
       </div>
 

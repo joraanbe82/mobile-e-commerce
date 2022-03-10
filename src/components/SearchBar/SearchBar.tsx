@@ -9,7 +9,7 @@ function SearchBar({ setSearch }: {
     <section className='searchBar'>
       <TextField
         variant='outlined'
-        label='Search'
+        label='Buscar'
         onChange={(e) => setSearch(e.target.value)}
       />
     </section>

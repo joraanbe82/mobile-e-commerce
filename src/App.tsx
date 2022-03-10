@@ -9,6 +9,7 @@ import ProductListPage from './views/ProductList/ProductListPage'
 import ProductDetailPageNew from './views/ProductDetail/ProductDetailPage'
 import BreadcrumbsComponent from './components/Breadcrumb/Breadcrumb'
 import Navbar from './components/Navbar/Navbar'
+import Error404Page from './components/error404/Error404Page'
 
 function App() {
   const location = useLocation()
@@ -34,6 +35,7 @@ function App() {
         <Route path='/' element={<Navigate to='/home' replace />} />
         <Route path='/home' element={<ProductListPage />} />
         <Route path='/detail/:id' element={<ProductDetailPageNew />} />
+        <Route path='*' element={<Error404Page />} />
       </Routes>
     </Container>
   )

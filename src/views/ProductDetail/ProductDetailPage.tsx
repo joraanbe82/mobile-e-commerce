@@ -54,9 +54,9 @@ function ProductDetailPage() {
     })
       .then((response) => {
         if (response.status === 200) {
-          const totalCart = window.localStorage.getItem('count')
+          const totalCart = window.sessionStorage.getItem('count')
           const newTotal = Number(totalCart) + 1
-          window.localStorage.setItem('count', newTotal.toString())
+          window.sessionStorage.setItem('count', newTotal.toString())
           Report.success(
             'Artículo agregado',
             'Se ha agregado correctamente el artículo a la cesta',
@@ -229,6 +229,7 @@ function ProductDetailPage() {
                       value={storage}
                       label='Almacenamiento'
                       onChange={handleChangeCapacity}
+
                     >
                       {mobile.options.storages.map((capacity:OptionValues) => (
                         <MenuItem

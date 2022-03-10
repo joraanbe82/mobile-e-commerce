@@ -82,7 +82,7 @@ function ProductListPage() {
         >
           {search.length > 0 && filteredData.map((product) => (
             <Grid key={product.id} item xs={3} sx={{ textAlign: 'center' }}>
-              <Card>
+              <Card sx={{ boxShadow: '2px 4px 4px 4px grey', padding: '3px' }}>
                 <CardHeader
                   title={product.model}
                   subheader={`${product.brand}  ${product.price} €`}
@@ -100,7 +100,7 @@ function ProductListPage() {
 
           {search.length === 0 && data.map((product) => (
             <Grid key={product.id} item xs={3} sx={{ textAlign: 'center' }}>
-              <Card>
+              <Card sx={{ boxShadow: '2px 4px 4px 4px grey', padding: '3px' }}>
                 <CardHeader
                   title={product.model}
                   subheader={`${product.brand}  ${product.price} €`}
