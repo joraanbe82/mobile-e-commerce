@@ -49,12 +49,14 @@ function ProductListPage() {
       const counter = setTimeout(() => {
         window.sessionStorage.removeItem('products')
         window.sessionStorage.removeItem('timer')
+        window.sessionStorage.removeItem('count')
       }, timer)
       return () => clearTimeout(counter)
     }
     if (timer === 0) {
       window.sessionStorage.removeItem('products')
       window.sessionStorage.removeItem('timer')
+      window.sessionStorage.removeItem('count')
     }
   }, [timer])
 

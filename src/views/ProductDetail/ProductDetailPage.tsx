@@ -12,6 +12,7 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import ShoppingCart from '@mui/icons-material/AddShoppingCart'
+import BackIcon from '@mui/icons-material/ReplyOutlined'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
@@ -71,9 +72,19 @@ function ProductDetailPage() {
 
   return (
     <section>
+      <div className='backButton'>
+        <Button
+          variant='outlined'
+          onClick={() => navigate('/home')}
+          color='error'
+          startIcon={<BackIcon />}
+        >
+          Volver
+        </Button>
+      </div>
       {mobile && Object.keys(mobile).length
         && (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }} className='box'>
           <Grid
             container
             spacing={{ xs: 2, md: 4 }}
