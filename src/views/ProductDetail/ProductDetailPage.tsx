@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { Report } from 'notiflix/build/notiflix-report-aio'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -15,7 +16,6 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 
-import Navbar from '../../components/Navbar/Navbar'
 import { ActionType } from '../../action-types'
 import { OptionValues } from './ProductDetailActions'
 
@@ -23,6 +23,7 @@ import './ProductDetail.css'
 
 function ProductDetailPage() {
   const { id } = useParams()
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const mobile = useAppSelector((state) => state.details.data)
   const [colors, setColors] = useState<string>('')
@@ -52,21 +53,24 @@ function ProductDetailPage() {
     })
       .then((response) => {
         if (response.status === 200) {
-          window.localStorage.setItem('count', response.data.count)
-          // siempre responde count: 1 hay que ir sumando
-          console.log('agregado al carro')
+          const totalCart = window.localStorage.getItem('count')
+          const newTotal = Number(totalCart) + 1
+          window.localStorage.setItem('count', newTotal.toString())
+          Report.success(
+            'Artículo agregado',
+            'Se ha agregado correctamente el artículo a la cesta',
+            'Aceptar',
+          )
+          resolve(navigate('/home'))
         }
       })
-      .catch((error) => reject(console.error('No se ha podido agregar el producto', error)))
+      .catch((err) => reject(console.error('No se ha podido agregar el producto', err)))
   })
 
   const isFormValid = () => colors.length > 0 && storage.length > 0
 
-  console.log({ mobile })
-
   return (
-    <>
-      {/* <Navbar /> */}
+    <section>
       {mobile && Object.keys(mobile).length
         && (
         <Box sx={{ flexGrow: 1 }}>
@@ -248,8 +252,8 @@ function ProductDetailPage() {
           </Grid>
         </Box>
         )}
+    </section>
 
-    </>
   )
 }
 
