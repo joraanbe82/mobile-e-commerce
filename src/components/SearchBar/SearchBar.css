@@ -1,5 +1,12 @@
 .searchBar {
   display: flex;
-  justify-content: end;
-  margin: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+
+@media (min-width: 900px){
+  .searchBar{
+    justify-content: end;
+  }
 }

@@ -21,7 +21,7 @@ function Navbar() {
     <section className='navbar'>
       <div className='divLogo'>
         <Link to='/home'>
-          <img alt='logo' src='/hand.png' width={50} />
+          <img alt='logo' src='/hand2.png' width={90} />
           <p>Mobile store</p>
         </Link>
       </div>
