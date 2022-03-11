@@ -31,13 +31,14 @@
     ],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
-    "max-len": ["warn", { "code": 80 , "tabWidth": 4}],
+    "max-len": ["warn", { "code": 90 , "tabWidth": 4}],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "import/prefer-default-export": "off",
     "react/prop-types": "off",
     "jsx-quotes": ["error", "prefer-single"],
-    "semi": [2,"never"]
+    "semi": [2,"never"],
+    "no-console": ["error", { "allow": ["warn", "error"] }]
     
   },
   "settings": {

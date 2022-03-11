@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
+import { Report } from 'notiflix/build/notiflix-report-aio'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { Report } from 'notiflix/build/notiflix-report-aio'
 
+import BackIcon from '@mui/icons-material/ReplyOutlined'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
+import FormControl from '@mui/material/FormControl'
 import Grid from '@mui/material/Grid'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import ShoppingCart from '@mui/icons-material/AddShoppingCart'
-import BackIcon from '@mui/icons-material/ReplyOutlined'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
+import ShoppingCart from '@mui/icons-material/AddShoppingCart'
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 

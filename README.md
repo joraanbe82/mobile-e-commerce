@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+# Introducción a Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto fue iniciado con Create React App. [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Web que se conecta a una api pública la cual devuelve un listado de dispositivos móviles.\
+En la primera pantalla se puede ver el total del listad, y hacer una búsqueda por marca y por modelo.\
+Pulsando sobre cualquier imagen se accede a la página de detalle donde se encuentran listadas el resto de especificaciones, se puede elegir el color y el almacenamiento si hubiese más de uno y finalmente agregar al carro de compra la selección.
 
-In the project directory, you can run:
+## Scripts disponibles
 
-### `yarn start`
+En el directorio del proyecto, puedes ejecutar:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `yarn install`🔧
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Ejecuta este comando para hacer la instalación de las dependencias
 
-### `yarn test`
+### `yarn start` 🖥️
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Ejecuta la aplicación en el modo de desarrollo.\
+Abre [http://localhost:3000](http://localhost:3000) para verla en el navegador.
 
-### `yarn build`
+La página se recargará si haces ediciones.\
+También verás cualquier error de lint en la consola.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `yarn lint` 🔩
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Ejecuta este comando para revisar y observar el código en busca de errores
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `yarn build` 📦
 
-### `yarn eject`
+Construye la aplicación para producción en la carpeta `build`.\
+Agrupa correctamente React en modo de producción y optimiza la compilación para obtener el mejor rendimiento.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+La compilación está minificada y los nombres de los archivos incluyen los hashes.\
+Tu aplicación está lista para ser desplegada.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Consulta la sección sobre [deployment](https://facebook.github.io/create-react-app/docs/deployment) para más información.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Construido con 🛠️
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- [React](https://es.reactjs.org/) - El framework web usado
+- [Typescript](https://www.typescriptlang.org/) - Super set para tipado fuerte de javascript
+- [Yarn](https://yarnpkg.com/) - Manejador de dependencias
+- [Material-ui](https://mui.com/) - Biblioteca para el uso de componentes de UI
+- [Redux](https://es.redux.js.org/) - Control de estados para acceso global en React
+- [Redux Saga](https://redux-saga.js.org/) - Middleware de redux que permite controlar funciones asyncronas
+- [Axios](https://github.com/axios/axios) - Cliente HTTP basado en promesas para el navegador
+- [Notiflix](https://notiflix.github.io/) - Librería para notificaciones
+
+## Autor ✒️
+
+- **Raúl Andrade** - _Desarrollador front end_ - [randrade](https://www.linkedin.com/in/raul-andrade82/)
+
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Puedes aprender más en  [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Para aprender React, consulta [React documentation](https://reactjs.org/).

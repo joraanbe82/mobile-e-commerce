@@ -1,10 +1,12 @@
-import { ThunkAction, Action } from '@reduxjs/toolkit'
+/* eslint-disable max-len */
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { ThunkAction, Action } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
-import rootSaga from './sagas'
-import { ProductListReducer } from '../views/ProductList/ProductListReducer'
+
 import { ProductDetailReducer } from '../views/ProductDetail/ProductDetailReducer'
+import { ProductListReducer } from '../views/ProductList/ProductListReducer'
+import rootSaga from './sagas'
 
 export type GlobalState = ReturnType<typeof rootReducer>
 

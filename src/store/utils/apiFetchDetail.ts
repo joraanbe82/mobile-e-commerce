@@ -5,7 +5,8 @@ const instance = axios.create({
   baseURL: process.env.REACT_APP_URL,
 })
 
-export const fetchDetails = (id: string): Promise<ProductDetail> => new Promise((resolve, reject) => {
+export const fetchDetails = (id: string):
+  Promise<ProductDetail> => new Promise((resolve, reject) => {
   instance
     .get<ProductDetail>(`/api/product/${id}`)
     .then((response) => {

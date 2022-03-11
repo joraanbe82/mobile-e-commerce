@@ -7,12 +7,11 @@ import CardHeader from '@mui/material/CardHeader'
 import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid'
 
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { Product } from './ProductListActions'
-
-import Navbar from '../../components/Navbar/Navbar'
-import SearchBar from '../../components/SearchBar/SearchBar'
 import { ActionType } from '../../action-types'
+import { Product } from './ProductListActions'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+
+import SearchBar from '../../components/SearchBar/SearchBar'
 
 function ProductListPage() {
   const dispatch = useAppDispatch()
