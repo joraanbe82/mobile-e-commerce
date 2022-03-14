@@ -3,8 +3,8 @@
 }
 .backButton {
   display: flex;
-  justify-content: end;
-  margin: -3rem 1rem;
+  justify-content: center;
+  
 }
 .box {
   margin-top: 3rem;
@@ -16,4 +16,11 @@
   display: flex;
   justify-content: space-between;
   margin: 2rem 0rem;
+}
+
+@media (min-width: 360px){
+  .backButton {   
+    margin: -3rem 1rem;
+    justify-content: end;
+  }
 }

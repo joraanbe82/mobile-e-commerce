@@ -5,11 +5,11 @@ import {
 
 import Container from '@mui/material/Container'
 
-import ProductListPage from './views/ProductList/ProductListPage'
-import ProductDetailPageNew from './views/ProductDetail/ProductDetailPage'
 import BreadcrumbsComponent from './components/Breadcrumb/Breadcrumb'
-import Navbar from './components/Navbar/Navbar'
 import Error404Page from './components/error404/Error404Page'
+import Navbar from './components/Navbar/Navbar'
+import ProductDetailPageNew from './views/ProductDetail/ProductDetailPage'
+import ProductListPage from './views/ProductList/ProductListPage'
 
 function App() {
   const location = useLocation()
