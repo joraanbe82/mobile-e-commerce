@@ -19,6 +19,9 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { ActionType } from '../../action-types'
 import { OptionValues } from '../../views/ProductDetail/ProductDetailActions'
 
+import DetailInfo from './DetailInfo'
+import DetailActions from './DetailActions'
+
 function DetailBox({ id }:{ id: string }) {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -27,16 +30,6 @@ function DetailBox({ id }:{ id: string }) {
   const storage = useAppSelector((state) => state.details.storage)
 
   const URL = process.env.REACT_APP_URL
-
-  const handleChangeColor = (event: SelectChangeEvent) => {
-    dispatch({ type: ActionType.SET_COLOR, payload: event.target.value.toString() })
-  }
-
-  const handleChangeCapacity = (event: SelectChangeEvent) => {
-    dispatch({ type: ActionType.SET_STORAGE, payload: event.target.value.toString() })
-  }
-
-  const isFormValid = () => color.length > 0 && storage.length > 0
 
   return (
 
@@ -61,7 +54,19 @@ function DetailBox({ id }:{ id: string }) {
           <section>
             <h4>Características</h4>
             <div>
-              <p>
+              <DetailInfo label='Marca' info={mobile.brand} />
+              <DetailInfo label='Modelo' info={mobile.model} />
+              <DetailInfo label='Precio' info={`${mobile.price} €`} />
+              <DetailInfo label='CPU' info={mobile.cpu} />
+              <DetailInfo label='RAM' info={mobile.ram} />
+              <DetailInfo label='Sistema Operativo' info={mobile.os} />
+              {/* <DetailInfo label='Resolución de pantalla' info={mobile.brand} /> */}
+              <DetailInfo label='Batería' info={mobile.battery} />
+              {/* <DetailInfo label='Cámara principal' info={mobile.brand} /> */}
+              <DetailInfo label='Cámara secundaria' info={mobile.secondaryCmera} />
+              <DetailInfo label='Dimensiones' info={mobile.dimentions} />
+              <DetailInfo label='Peso' info={`${mobile.weight} gr`} />
+              {/* <p>
                 <strong>Marca: </strong>
                 {' '}
                 {mobile.brand}
@@ -91,7 +96,7 @@ function DetailBox({ id }:{ id: string }) {
                 <strong>Sistema Operativo: </strong>
                 {' '}
                 {mobile.os}
-              </p>
+              </p> */}
               <p>
                 <strong>Resolución de pantalla: </strong>
                 <span>
@@ -105,11 +110,11 @@ function DetailBox({ id }:{ id: string }) {
                 <span>{mobile.displayType}</span>
 
               </p>
-              <p>
+              {/* <p>
                 <strong>Batería: </strong>
                 {' '}
                 {mobile.battery}
-              </p>
+              </p> */}
               <p>
                 <strong>Cámara principal: </strong>
                 {' '}
@@ -129,7 +134,7 @@ function DetailBox({ id }:{ id: string }) {
                 </span>
                 )}
               </p>
-              <p>
+              {/* <p>
                 <strong>Cámara secundaria: </strong>
                 {' '}
                 <span>
@@ -137,7 +142,7 @@ function DetailBox({ id }:{ id: string }) {
                 </span>
               </p>
               <p>
-                <strong>Dimesiones: </strong>
+                <strong>Dimensiones: </strong>
                 {' '}
                 {mobile.dimentions}
               </p>
@@ -146,77 +151,13 @@ function DetailBox({ id }:{ id: string }) {
                 {' '}
                 {mobile.weight}
                 {' gr'}
-              </p>
+              </p> */}
 
             </div>
 
           </section>
 
-          <section className='actions'>
-            <div className='selects'>
-              <FormControl fullWidth>
-                <InputLabel id='color-label'>Color</InputLabel>
-                <Select
-                  labelId='color-label'
-                  id='color-select'
-                  value={color}
-                  label='Color'
-                  onChange={handleChangeColor}
-                >
-                  {mobile.options.colors.map((MobileColor:OptionValues) => (
-                    <MenuItem
-                      key={MobileColor.code}
-                      value={MobileColor.code}
-                    >
-                      {MobileColor.name}
-                    </MenuItem>
-                  ))}
-
-                </Select>
-              </FormControl>
-
-              <FormControl fullWidth>
-                <InputLabel id='capacity-label'>
-                  Almacenamiento
-                </InputLabel>
-                <Select
-                  labelId='capacity-label'
-                  id='capacity-select'
-                  value={storage}
-                  label='Almacenamiento'
-                  onChange={handleChangeCapacity}
-                >
-                  {mobile.options.storages.map((capacity:OptionValues) => (
-                    <MenuItem
-                      key={capacity.code}
-                      value={capacity.code}
-                    >
-                      {capacity.name}
-                    </MenuItem>
-                  ))}
-
-                </Select>
-              </FormControl>
-
-            </div>
-
-            <Button
-              startIcon={<ShoppingCart />}
-              variant='contained'
-              onClick={() => dispatch({
-                type: ActionType.ADD_CART,
-                payload: {
-                  id, colorCode: color, storageCode: storage, navigate,
-                },
-              })}
-              disabled={!isFormValid()}
-            >
-              Añadir a la cesta
-
-            </Button>
-            {' '}
-
-          </section>
+          <DetailActions mobile={mobile} id={id} />
 
         </Grid>
 

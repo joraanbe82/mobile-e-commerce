@@ -22,7 +22,6 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(
     sagaMiddleware,
-
   )),
 )
 
