@@ -38,7 +38,7 @@
     "react/prop-types": "off",
     "jsx-quotes": ["error", "prefer-single"],
     "semi": [2,"never"],
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    "no-console": ["warn", { "allow": ["warn", "error"] }]
     
   },
   "settings": {

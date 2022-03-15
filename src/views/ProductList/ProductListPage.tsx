@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable no-console */
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
@@ -8,7 +9,7 @@ import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid'
 
 import { ActionType } from '../../action-types'
-import { Product } from './ProductListActions'
+
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 
 import SearchBar from '../../components/SearchBar/SearchBar'
@@ -17,10 +18,14 @@ function ProductListPage() {
   const dispatch = useAppDispatch()
   const products = useAppSelector((state) => state.product.data)
   const timer = useAppSelector((state) => state.product.timer)
-  const [search, setSearch] = useState<string>('')
-  const [filteredData, setFilteredData] = useState<Product[]>([])
-  const [data, setData] = useState<Product[]>([])
+  const filter = useAppSelector((state) => state.product.filter)
+  const filterData = useAppSelector((state) => state.product.filterData)
 
+  // eslint-disable-next-line no-console
+  console.log(filter)
+  console.log(filterData)
+
+  // call api first time
   useEffect(() => {
     if (window.sessionStorage.getItem('products') === null
       && window.sessionStorage.getItem('timer') === null) {
@@ -28,18 +33,20 @@ function ProductListPage() {
     }
   }, [dispatch, timer])
 
+  // save data in client
   useEffect(() => {
     if (products.length > 0) {
       window.sessionStorage.setItem('products', JSON.stringify(products))
     }
   }, [products])
 
+  // filter items
   useEffect(() => {
-    const permaData = window.sessionStorage.getItem('products')
-    if (permaData) {
-      setData(JSON.parse(permaData))
+    const filterProduct = (value: string) => {
+      dispatch({ type: ActionType.SEARCH_PRODUCT, payload: value })
     }
-  }, [products])
+    filterProduct(filter)
+  }, [filter, dispatch])
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
@@ -49,6 +56,7 @@ function ProductListPage() {
         window.sessionStorage.removeItem('products')
         window.sessionStorage.removeItem('timer')
         window.sessionStorage.removeItem('count')
+        dispatch({ type: ActionType.SET_COUNTER, payload: 0 })
       }, timer)
       return () => clearTimeout(counter)
     }
@@ -57,21 +65,11 @@ function ProductListPage() {
       window.sessionStorage.removeItem('timer')
       window.sessionStorage.removeItem('count')
     }
-  }, [timer])
-
-  useEffect(() => {
-    const filterProduct = (value: string): Product[] => {
-      const searched = data.filter((mobile) => mobile.model.includes(value)
-      || mobile.brand.includes(value))
-      return searched
-    }
-    filterProduct(search)
-    setFilteredData(filterProduct(search))
-  }, [data, search])
+  }, [timer, dispatch])
 
   return (
     <>
-      <SearchBar setSearch={setSearch} />
+      <SearchBar />
       <Box sx={{ flexGrow: 1 }}>
         <Grid
           container
@@ -79,25 +77,8 @@ function ProductListPage() {
           columns={{ xs: 4, sm: 8, md: 12 }}
           sx={{ justifyContent: 'center' }}
         >
-          {search.length > 0 && filteredData.map((product) => (
-            <Grid key={product.id} item xs={3} sx={{ textAlign: 'center' }}>
-              <Card sx={{ boxShadow: '2px 4px 4px 4px grey', padding: '3px' }}>
-                <CardHeader
-                  title={product.model}
-                  subheader={`${product.brand}  ${product.price} €`}
-                />
-                <Link to={`/detail/${product.id}`}>
-                  <CardMedia
-                    component='img'
-                    image={product.imgUrl}
-                    alt={product.model}
-                  />
-                </Link>
-              </Card>
-            </Grid>
-          ))}
 
-          {search.length === 0 && data.map((product) => (
+          {filterData.length === 0 && products.map((product) => (
             <Grid key={product.id} item xs={3} sx={{ textAlign: 'center' }}>
               <Card sx={{ boxShadow: '2px 4px 4px 4px grey', padding: '3px' }}>
                 <CardHeader
@@ -115,6 +96,60 @@ function ProductListPage() {
 
             </Grid>
           ))}
+          {filterData.length > 0 && filterData.map((product) => (
+            <Grid key={product.id} item xs={3} sx={{ textAlign: 'center' }}>
+              <Card sx={{ boxShadow: '2px 4px 4px 4px grey', padding: '3px' }}>
+                <CardHeader
+                  title={product.model}
+                  subheader={`${product.brand}  ${product.price} €`}
+                />
+                <Link to={`/detail/${product.id}`}>
+                  <CardMedia
+                    component='img'
+                    image={product.imgUrl}
+                    alt={product.model}
+                  />
+                </Link>
+              </Card>
+
+            </Grid>
+          ))}
+          {/* {search.length > 0 && filteredData.map((product) => (
+            <Grid key={product.id} item xs={3} sx={{ textAlign: 'center' }}>
+              <Card sx={{ boxShadow: '2px 4px 4px 4px grey', padding: '3px' }}>
+                <CardHeader
+                  title={product.model}
+                  subheader={`${product.brand}  ${product.price} €`}
+                />
+                <Link to={`/detail/${product.id}`}>
+                  <CardMedia
+                    component='img'
+                    image={product.imgUrl}
+                    alt={product.model}
+                  />
+                </Link>
+              </Card>
+            </Grid>
+          ))} */}
+
+          {/* {search.length === 0 && data.map((product) => (
+            <Grid key={product.id} item xs={3} sx={{ textAlign: 'center' }}>
+              <Card sx={{ boxShadow: '2px 4px 4px 4px grey', padding: '3px' }}>
+                <CardHeader
+                  title={product.model}
+                  subheader={`${product.brand}  ${product.price} €`}
+                />
+                <Link to={`/detail/${product.id}`}>
+                  <CardMedia
+                    component='img'
+                    image={product.imgUrl}
+                    alt={product.model}
+                  />
+                </Link>
+              </Card>
+
+            </Grid>
+          ))} */}
 
         </Grid>
       </Box>

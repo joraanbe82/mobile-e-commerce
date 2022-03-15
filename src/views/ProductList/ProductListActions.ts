@@ -27,7 +27,19 @@ interface SetCounter {
   payload: number
 }
 
+interface SearchProduct {
+  type: ActionType.SEARCH_PRODUCT,
+  payload: string
+}
+
+interface Filter {
+  type: ActionType.FILTER,
+  payload: string
+}
+
 export type Action = GetProducts |
   GetProductsSuccess |
   GetProductsError |
-  SetCounter
+  SetCounter |
+  SearchProduct |
+  Filter

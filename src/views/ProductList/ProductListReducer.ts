@@ -2,15 +2,21 @@ import { ActionType } from '../../action-types'
 import { Action, Product } from './ProductListActions'
 
 export type productListState = {
-  data: Product[]
+  data: Product[],
+  filterData: Product[],
   errorMessage: string,
-  timer: number
+  timer: number,
+  search: string,
+  filter: string
 }
 
 const initialState = {
   data: [] as Product[],
+  filterData: [] as Product[],
   errorMessage: '',
   timer: 0,
+  search: '',
+  filter: '',
 }
 
 export const ProductListReducer = (
@@ -27,6 +33,16 @@ export const ProductListReducer = (
       return { ...state, errorMessage: action.payload }
     case ActionType.SET_COUNTER:
       return { ...state, timer: action.payload }
+    case ActionType.FILTER:
+      return { ...state, filter: action.payload }
+    case ActionType.SEARCH_PRODUCT: {
+      if (action.payload.length === 0) {
+        return { ...state, filterData: [] }
+      }
+      const searched = state.data.filter((mobile) => mobile.model.includes(action.payload)
+        || mobile.brand.includes(action.payload))
+      return { ...state, filterData: searched }
+    }
     default:
       return state
   }
