@@ -114,42 +114,6 @@ function ProductListPage() {
 
             </Grid>
           ))}
-          {/* {search.length > 0 && filteredData.map((product) => (
-            <Grid key={product.id} item xs={3} sx={{ textAlign: 'center' }}>
-              <Card sx={{ boxShadow: '2px 4px 4px 4px grey', padding: '3px' }}>
-                <CardHeader
-                  title={product.model}
-                  subheader={`${product.brand}  ${product.price} €`}
-                />
-                <Link to={`/detail/${product.id}`}>
-                  <CardMedia
-                    component='img'
-                    image={product.imgUrl}
-                    alt={product.model}
-                  />
-                </Link>
-              </Card>
-            </Grid>
-          ))} */}
-
-          {/* {search.length === 0 && data.map((product) => (
-            <Grid key={product.id} item xs={3} sx={{ textAlign: 'center' }}>
-              <Card sx={{ boxShadow: '2px 4px 4px 4px grey', padding: '3px' }}>
-                <CardHeader
-                  title={product.model}
-                  subheader={`${product.brand}  ${product.price} €`}
-                />
-                <Link to={`/detail/${product.id}`}>
-                  <CardMedia
-                    component='img'
-                    image={product.imgUrl}
-                    alt={product.model}
-                  />
-                </Link>
-              </Card>
-
-            </Grid>
-          ))} */}
 
         </Grid>
       </Box>

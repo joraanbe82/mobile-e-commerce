@@ -7,7 +7,7 @@ export type productListState = {
   errorMessage: string,
   timer: number,
   search: string,
-  filter: string
+  filter: string,
 }
 
 const initialState = {

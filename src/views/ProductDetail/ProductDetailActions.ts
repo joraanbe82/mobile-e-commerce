@@ -66,6 +66,16 @@ interface GetProductDetailError {
   payload: string
 }
 
+interface SetColor {
+  type: ActionType.SET_COLOR
+  payload: string
+}
+
+interface SetStorage {
+  type: ActionType.SET_STORAGE,
+  payload: string
+}
+
 export type ActionDetail = GetProductDetail |
 GetProductDetailSuccess |
-GetProductDetailError
+GetProductDetailError | SetColor | SetStorage

@@ -27,8 +27,11 @@ function ProductDetailPage() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const mobile = useAppSelector((state) => state.details.data)
-  const [colors, setColors] = useState<string>('')
-  const [storage, setStorage] = useState<string>('')
+  const color = useAppSelector((state) => state.details.color)
+  const storage = useAppSelector((state) => state.details.storage)
+
+  // const [colors, setColors] = useState<string>('')
+  // const [storage, setStorage] = useState<string>('')
 
   const URL = process.env.REACT_APP_URL
 
@@ -39,17 +42,19 @@ function ProductDetailPage() {
   }, [id, dispatch])
 
   const handleChangeColor = (event: SelectChangeEvent) => {
-    setColors(event.target.value.toString())
+    // setColors(event.target.value.toString())
+    dispatch({ type: ActionType.SET_COLOR, payload: event.target.value.toString() })
   }
 
   const handleChangeCapacity = (event: SelectChangeEvent) => {
-    setStorage(event.target.value.toString())
+    // setStorage(event.target.value.toString())
+    dispatch({ type: ActionType.SET_STORAGE, payload: event.target.value.toString() })
   }
 
   const addToCar = () => new Promise((resolve, reject) => {
     axios.post(`${URL}/api/cart`, {
       id: mobile.id,
-      colorCode: colors,
+      colorCode: color,
       storageCode: storage,
     })
       .then((response) => {
@@ -68,7 +73,7 @@ function ProductDetailPage() {
       .catch((err) => reject(console.error('No se ha podido agregar el producto', err)))
   })
 
-  const isFormValid = () => colors.length > 0 && storage.length > 0
+  const isFormValid = () => color.length > 0 && storage.length > 0
 
   return (
     <section>
@@ -203,16 +208,16 @@ function ProductDetailPage() {
                     <Select
                       labelId='color-label'
                       id='color-select'
-                      value={colors}
+                      value={color}
                       label='Color'
                       onChange={handleChangeColor}
                     >
-                      {mobile.options.colors.map((color:OptionValues) => (
+                      {mobile.options.colors.map((MobileColor:OptionValues) => (
                         <MenuItem
-                          key={color.code}
-                          value={color.code}
+                          key={MobileColor.code}
+                          value={MobileColor.code}
                         >
-                          {color.name}
+                          {MobileColor.name}
                         </MenuItem>
                       ))}
 
@@ -255,7 +260,6 @@ function ProductDetailPage() {
 
                 </Button>
                 {' '}
-                {/** indetificador, codigoColor, codigoCapacidad */}
 
               </section>
 
