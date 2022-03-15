@@ -35,9 +35,9 @@ function ProductDetailPage() {
           Volver
         </Button>
       </div>
-      {mobile && Object.keys(mobile).length
+      {id && mobile && Object.keys(mobile).length
         && (
-          <DetailBox />
+          <DetailBox id={id} />
         )}
     </section>
 

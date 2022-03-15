@@ -12,11 +12,18 @@ export type GlobalState = ReturnType<typeof rootReducer>
 
 const sagaMiddleware = createSagaMiddleware()
 
-const rootReducer = combineReducers({ product: ProductListReducer, details: ProductDetailReducer })
+const rootReducer = combineReducers({
+
+  product: ProductListReducer,
+  details: ProductDetailReducer,
+})
 
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware)),
+  composeWithDevTools(applyMiddleware(
+    sagaMiddleware,
+
+  )),
 )
 
 sagaMiddleware.run(rootSaga)

@@ -1,3 +1,4 @@
+import { To } from 'react-router-dom'
 import { ActionType } from '../../action-types'
 
 export interface OptionValues {
@@ -75,7 +76,40 @@ interface SetStorage {
   type: ActionType.SET_STORAGE,
   payload: string
 }
+interface NavigateFunction {
+  (
+    to: To,
+    options?: { replace?: boolean; state?: never }
+  ): void;
+  (delta: number): void;
+}
+export type Cart = {
+  id: string,
+  colorCode: string,
+  storageCode: string,
+  navigate: NavigateFunction
+}
 
-export type ActionDetail = GetProductDetail |
-GetProductDetailSuccess |
-GetProductDetailError | SetColor | SetStorage
+interface AddToCart {
+  type: ActionType.ADD_CART,
+  payload: Cart
+}
+interface AddToCartSuccess {
+  type: ActionType.ADD_CART_SUCCESS,
+  payload: number
+}
+
+interface AddToCartError {
+  type: ActionType.ADD_CART_ERROR,
+  payload: string
+}
+
+export type ActionDetail =
+  GetProductDetailSuccess |
+  GetProductDetail |
+  GetProductDetailError |
+  SetColor |
+  SetStorage |
+  AddToCart |
+  AddToCartSuccess |
+  AddToCartError

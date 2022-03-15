@@ -12,11 +12,13 @@ import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
+
     <Router>
       <Provider store={store}>
         <App />
       </Provider>
     </Router>
+
   </React.StrictMode>,
   document.getElementById('root'),
 )

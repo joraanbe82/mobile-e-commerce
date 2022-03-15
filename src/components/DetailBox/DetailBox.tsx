@@ -19,7 +19,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { ActionType } from '../../action-types'
 import { OptionValues } from '../../views/ProductDetail/ProductDetailActions'
 
-function DetailBox() {
+function DetailBox({ id }:{ id: string }) {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const mobile = useAppSelector((state) => state.details.data)
@@ -35,30 +35,6 @@ function DetailBox() {
   const handleChangeCapacity = (event: SelectChangeEvent) => {
     dispatch({ type: ActionType.SET_STORAGE, payload: event.target.value.toString() })
   }
-
-  const addToCar = () => new Promise((resolve, reject) => {
-    axios.post(`${URL}/api/cart`, {
-      id: mobile.id,
-      colorCode: color,
-      storageCode: storage,
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          const totalCart = window.sessionStorage.getItem('count')
-          const newTotal = Number(totalCart) + 1
-          window.sessionStorage.setItem('count', newTotal.toString())
-          Report.success(
-            'Artículo agregado',
-            'Se ha agregado correctamente el artículo a la cesta',
-            'Aceptar',
-          )
-          dispatch({ type: ActionType.SET_COLOR, payload: '' })
-          dispatch({ type: ActionType.SET_STORAGE, payload: '' })
-          resolve(navigate('/home'))
-        }
-      })
-      .catch((err) => reject(console.error('No se ha podido agregar el producto', err)))
-  })
 
   const isFormValid = () => color.length > 0 && storage.length > 0
 
@@ -227,7 +203,12 @@ function DetailBox() {
             <Button
               startIcon={<ShoppingCart />}
               variant='contained'
-              onClick={() => addToCar()}
+              onClick={() => dispatch({
+                type: ActionType.ADD_CART,
+                payload: {
+                  id, colorCode: color, storageCode: storage, navigate,
+                },
+              })}
               disabled={!isFormValid()}
             >
               Añadir a la cesta
