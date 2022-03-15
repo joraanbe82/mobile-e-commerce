@@ -5,7 +5,6 @@ import BackIcon from '@mui/icons-material/ReplyOutlined'
 import Button from '@mui/material/Button'
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
-
 import { ActionType } from '../../action-types'
 
 import DetailBox from '../../components/DetailBox/DetailBox'
