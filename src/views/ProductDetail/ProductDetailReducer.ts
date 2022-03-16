@@ -24,7 +24,7 @@ export const ProductDetailReducer = (
     case ActionType.GET_DETAIL:
       return state
     case ActionType.GET_DETAIL_SUCCESS:
-      return { ...state, data: action.payload }
+      return { ...state, data: action.payload, errorMessage: '' }
     case ActionType.GET_DETAIL_ERROR:
       return { ...state, errorMessage: action.payload }
     case ActionType.SET_COLOR:

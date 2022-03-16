@@ -14,7 +14,6 @@ function SearchBar() {
       <TextField
         variant='outlined'
         label='Buscar'
-        // onChange={(e) => setSearch(e.target.value)}
         onChange={(e) => dispatch({
           type: ActionType.FILTER,
           payload: e.target.value.toLowerCase(),

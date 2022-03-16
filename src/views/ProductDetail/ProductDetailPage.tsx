@@ -16,6 +16,7 @@ function ProductDetailPage() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const mobile = useAppSelector((state) => state.details.data)
+  const error = useAppSelector((state) => state.details.errorMessage)
 
   useEffect(() => {
     if (id) {
@@ -35,10 +36,11 @@ function ProductDetailPage() {
           Volver
         </Button>
       </div>
-      {id && mobile && Object.keys(mobile).length
+      {!error && id && mobile && Object.keys(mobile).length
         && (
           <DetailBox />
         )}
+      {error && <div className='errorMessage'><h3>{error}</h3></div>}
     </section>
 
   )
