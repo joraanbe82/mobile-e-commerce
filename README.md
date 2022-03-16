@@ -3,8 +3,30 @@
 Este proyecto fue iniciado con Create React App. [Create React App](https://github.com/facebook/create-react-app).
 
 Web que se conecta a una api pública la cual devuelve un listado de dispositivos móviles.\
-En la primera pantalla se puede ver el total del listad, y hacer una búsqueda por marca y por modelo.\
-Pulsando sobre cualquier imagen se accede a la página de detalle donde se encuentran listadas el resto de especificaciones, se puede elegir el color y el almacenamiento si hubiese más de uno y finalmente agregar al carro de compra la selección.
+
+La barra de navegación es la misma para ambas vistas, a la izquierda se encuentra el logo de la tienda el cual al pulsar si no se estuviese en  la página principal te devolveria a ella, a la derecha se encuentra el icono del carro de la compra donde aparecerán el número de artículos que se han ido agregando.
+
+En la primera pantalla se puede ver el total de artículos del listado, y hacer una búsqueda por marca y por modelo. La primera vez que se accede a la pantalla principal se realiza una llamada a la api para obtener la lista de artículos y se guarda en el session storage del cliente durante una hora, he elegido el session en vez del local storage para que cuando se cierre el navegador cualquier tipo de información almacenada se elimine y no persista.\
+
+El breadcrumb de la página principal sirve también como opción de navegación para volver al home si no se encontrase en esa pantalla.\
+
+El filtrado de búsqueda se hace en tiempo real usando la información almacenada en redux sin hacer nuevas llamadas a la api para traer los datos.\
+
+Pulsando sobre cualquier imagen se accede a la página de detalle donde se encuentran listadas el resto de especificaciones.\
+
+En la vista de detalles, el breadcrumb obtiene un valor más indicando que nos encontramos en una nueva vista.\
+
+En la parte superior derecha aparece un botón para volver a la pantalla del home siendo la tercera opción disponible para ello.\
+
+En la vista de detalles podemos ver el listado de características del modelo seleccionado, para ello se obtiene el id de la ruta de navegación y se hace una llamada a la api cada vez que ese id cambia, si se introduce una id errónea aparecerá el mensaje de error. Al volver a la página principal si se ha introducido una id errónea manualmente a través de la ruta del navegador los valores de redux se pierden, hay un useEffect que detecta de si los valores siguen almacenados en el cliente y los utiliza para volver a guardarlo en redux.\
+
+Antes de agregar un artículo al carro se han de seleccionar obligatoriamente el color y el tamaño del almacenamiento interno, para ello el botón estará deshabilitado hasta que se elijan ambos valores.\
+
+Al agregar el artículo al carro de la compra, automáticamente se redirecciona hacia la página principal, se muestra un pop-up de confirmación de que se ha agregado correctamente al carro de la compra y se actualiza el valor númerico del item situado en la parte derecha del navbar.
+El post utilizado en la api para agregar un artículo al carro, siempre devuelve el valor de 1, no se si eso es así a propósito o está devolviendo mal el resultado al no sumar los artículos y para llevar un control de cuantos artículos se han agregado al carro se ha decidido guardar ese valor en la parte del cliente en el session storage e ir actualizando allí el número.\
+
+
+
 
 ## Scripts disponibles
 

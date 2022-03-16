@@ -28,7 +28,7 @@ export const ProductListReducer = (
     case ActionType.GET_PRODUCTS:
       return state
     case ActionType.GET_PRODUCTS_SUCCESS:
-      return { ...state, data: action.payload }
+      return { ...state, data: action.payload, errorMessage: '' }
     case ActionType.GET_PRODUCTS_ERROR:
       return { ...state, errorMessage: action.payload }
     case ActionType.SET_COUNTER:

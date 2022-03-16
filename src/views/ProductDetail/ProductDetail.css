@@ -12,6 +12,11 @@
 .card{
   box-shadow: none!important;
 }
+.errorMessage {
+  text-align: center;
+  color: brown;
+  margin-top: 20%;
+}
 .selects {
   display: flex;
   justify-content: space-between;

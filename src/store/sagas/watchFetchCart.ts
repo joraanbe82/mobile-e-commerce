@@ -1,6 +1,5 @@
 import { Report } from 'notiflix'
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { push } from 'connected-react-router'
 import { ActionType } from '../../action-types'
 
 import { ProductDetail, Cart } from '../../views/ProductDetail/ProductDetailActions'
