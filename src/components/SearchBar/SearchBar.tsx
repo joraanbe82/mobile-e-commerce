@@ -18,6 +18,9 @@ function SearchBar() {
           type: ActionType.FILTER,
           payload: e.target.value.toLowerCase(),
         })}
+        inputProps={{
+          'data-testid': 'input-search',
+        }}
       />
     </section>
   )
