@@ -1,3 +1,4 @@
+import { Report } from 'notiflix'
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { push } from 'connected-react-router'
 import { ActionType } from '../../action-types'
@@ -17,16 +18,15 @@ function* addToCart(action: DetailParams) {
     const totalCart = window.sessionStorage.getItem('count')
     const newTotal = Number(totalCart) + 1
     window.sessionStorage.setItem('count', newTotal.toString())
-    // Report.success(
-    //   'Artículo agregado',
-    //   'Se ha agregado correctamente el artículo a la cesta',
-    //   'Aceptar',
-    // )
+    Report.success(
+      'Artículo agregado',
+      'Se ha agregado correctamente el artículo a la cesta',
+      'Aceptar',
+    )
     yield put({ type: ActionType.ADD_CART_SUCCESS, payload: details })
     yield put({ type: ActionType.SET_COLOR, payload: '' })
     yield put({ type: ActionType.SET_STORAGE, payload: '' })
     action.payload.navigate('/home')
-    // yield put(push('/home'))
   } catch (e) {
     yield put({
       type: ActionType.ADD_CART_ERROR,
