@@ -1,6 +1,6 @@
 import React from 'react'
 
-function DetailInfo({ label, info }:{label: string; info: string }) {
+function DetailInfo({ label, info }:{label: string; info: string | string[] }) {
   return (
     <p>
       <strong>
@@ -8,7 +8,13 @@ function DetailInfo({ label, info }:{label: string; info: string }) {
         :
         {' '}
       </strong>
-      {info}
+      {typeof info === 'string' ? <span>{info}</span> : null}
+      {typeof info !== 'string' && info.map((data) => (
+        <span key={data}>
+          {data}
+          {'  '}
+        </span>
+      ))}
     </p>
 
   )

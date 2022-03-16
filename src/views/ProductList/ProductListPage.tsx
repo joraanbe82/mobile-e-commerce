@@ -22,8 +22,8 @@ function ProductListPage() {
   const filterData = useAppSelector((state) => state.product.filterData)
 
   // eslint-disable-next-line no-console
-  console.log(filter)
-  console.log(filterData)
+  // console.log(filter)
+  // console.log(filterData)
 
   // call api first time
   useEffect(() => {

@@ -37,7 +37,7 @@ function ProductDetailPage() {
       </div>
       {id && mobile && Object.keys(mobile).length
         && (
-          <DetailBox id={id} />
+          <DetailBox />
         )}
     </section>
 
