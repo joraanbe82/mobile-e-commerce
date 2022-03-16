@@ -12,8 +12,7 @@ export type GlobalState = ReturnType<typeof rootReducer>
 
 const sagaMiddleware = createSagaMiddleware()
 
-const rootReducer = combineReducers({
-
+export const rootReducer = combineReducers({
   product: ProductListReducer,
   details: ProductDetailReducer,
 })

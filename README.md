@@ -44,6 +44,9 @@ Abre [http://localhost:3000](http://localhost:3000) para verla en el navegador.
 La página se recargará si haces ediciones.\
 También verás cualquier error de lint en la consola.
 
+### `yarn test`
+Ejecuta la aplicación en modo test
+
 ### `yarn lint` 🔩
 
 Ejecuta este comando para revisar y observar el código en busca de errores
