@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 import store from '../../store'
 import SearchBar from './SearchBar'
 
-describe('Given a redux store', () => {
+describe('Test input to filter data', () => {
   beforeEach(() => {
     render(
       <Router>
@@ -18,7 +18,7 @@ describe('Given a redux store', () => {
   })
 
   test('input should be render', () => {
-    const searchInputEl = screen.getByTestId(/input-search/i)
+    const searchInputEl = screen.getByTestId<HTMLInputElement>(/input-search/i)
     expect(searchInputEl).toBeInTheDocument()
   })
 
