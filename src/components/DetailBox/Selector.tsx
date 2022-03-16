@@ -1,22 +1,12 @@
-import React, { ChangeEvent, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import React from 'react'
 
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Card from '@mui/material/Card'
-import CardMedia from '@mui/material/CardMedia'
 import FormControl from '@mui/material/FormControl'
-import Grid from '@mui/material/Grid'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import ShoppingCart from '@mui/icons-material/AddShoppingCart'
 
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { ActionType } from '../../action-types'
 import {
   OptionValues,
-  ProductDetail,
 } from '../../views/ProductDetail/ProductDetailActions'
 
 function Selector({
